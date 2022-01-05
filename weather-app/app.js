@@ -2,17 +2,17 @@ const request = require('request')
 const forecast = require('./utils/forecast')
 const geocode = require('./utils/geocode')
 
-geocode('Rivne', (error, data) => {
+geocode('Kharkiv', (error, {latitude, longtitude, location} = {}) => {
     if (error) {
         return console.log(error)
     } 
     
-    forecast(data.latitude, data.longtitude, (error, forecastData) => {
+    forecast(latitude, longtitude, (error, forecastData) => {
         if (error) {
             return console.log(error)
         }
 
-        console.log(data.location)
+        console.log(location)
         console.log(forecastData)
     })
 })
